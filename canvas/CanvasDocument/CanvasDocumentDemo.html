@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<script type="text/javascript" src="CanvasDocument.js"></script>
+		<style>
+			body {
+				background-color: #CCC;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>CanvasDocument Demo</h1>
+		The text extracted from a PDF document could be rendered into a canvas element as shown. Clicking any text item on the canvas will select it and we can take action on that!<br/>
+		<h3>Your Selected Text:</h3>
+		<div id="selectedtext"></div>
+		<h3>Your canvas PDF document:</h3>
+		<canvas id="thecanvas" style="border: 1px solid #666; background-color: #FFF;"></canvas>
+		<script type="text/javascript">
+			var doc = new CanvasDocument('thecanvas');
+			doc.setClickSelection(true, function (obj) {
+				var e = document.getElementById('selectedtext');
+				e.innerHTML = obj.data;
+			});
+			doc.addObject('text', 100, 50, 100, 20, 'Hello, World!');
+			doc.addPDFObject('text', 100, 50, 100, 20, 'Bye-bye, World!');
+			doc.render();
+
+		</script>
+	</body>
+</html>
+
